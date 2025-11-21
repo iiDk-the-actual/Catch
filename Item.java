@@ -14,7 +14,8 @@ public class Item extends SharedResources
      */
     public enum ItemType
     {
-        Apple
+        Apple,
+        Heart
     }
     
     public ItemType type;
@@ -30,19 +31,31 @@ public class Item extends SharedResources
             case ItemType.Apple:
                 setImage(new GreenfootImage("apple.png"));
                 break;
+            case ItemType.Heart:
+                setImage(new GreenfootImage("heart.png"));
+                break;
         }
+        
+        getImage().setTransparency(0);
     }
     
     public float xVelocity;
     public float yVelocity;
+    
     public void act()
     {
         yVelocity += 0.25;
         setY(getY() + (int)yVelocity);
         
+        GreenfootImage image = getImage();
+        
+        int transparency = image.getTransparency();
+        transparency = transparency + (int)((255 - transparency) * 0.1f);
+        
+        image.setTransparency(transparency);
+        
         if (getY() > 325){
-            ParticleManager.instance.createParticle(getImage(), getX(), getY(), random(-10, 10), -10, random(-15, 15), 30, true, 1);
-            destroy();
+            missItem();
         }
     }
 
@@ -59,9 +72,27 @@ public class Item extends SharedResources
         switch (type){
             case Apple:
                 ScoreManager.instance.incrementScore(1);
+                break;
+            case Heart:
+                HealthBar.instance.incrementHealth(1);
+                break;
             default:
+                break;
         }
 
+        destroy();
+    }
+    
+    public void missItem(){
+        switch (type){
+            case Apple:
+                HealthBar.instance.incrementHealth(-1);
+                break;
+            default:
+                break;
+        }
+ 
+        ParticleManager.instance.createParticle(getImage(), getX(), getY(), random(-5, 5), -5, random(-15, 15), 30, true, 0.25f);
         destroy();
     }
 }

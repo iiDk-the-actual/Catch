@@ -23,6 +23,7 @@ public class CatchWorld extends World
         
         ScoreManager.initialize();
         ParticleManager.initialize();
+        HealthBar.initialize();
         
         populate();
     }
@@ -41,8 +42,15 @@ public class CatchWorld extends World
         addObject(new Player(), getWidth() / 2, 300);
     }
 
+    public int countUntilNonApple = 10;
     public void spawnRandomItem(){
-        spawnItem(Item.ItemType.Apple, random(0, getWidth()),  0);
+        Item.ItemType itemType = Item.ItemType.Apple;
+        countUntilNonApple--;
+        if (countUntilNonApple < 0){
+            countUntilNonApple = random(3, 10);
+            itemType = Item.ItemType.Heart;
+        }
+        spawnItem(itemType, random(0, getWidth()),  0);
     }
 
     public int random(int min, int max){// greenfoot's random method is terrible
