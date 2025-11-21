@@ -21,11 +21,12 @@ public class ParticleManager extends SharedResources
         instance = new ParticleManager();
     }
 
-    public void createParticle(GreenfootImage image, int x, int y, float xVelocity, float yVelocity,
-                               float time, boolean fade
+    public void createParticle(GreenfootImage image, int x, int y, float xVelocity, float yVelocity, float degVelocity,
+                               int time, boolean fade, float gravity
     ){
-        Particle particleInstance = new Particle();
+        Particle particleInstance = new Particle(xVelocity, yVelocity, degVelocity, time, fade, gravity);
         CatchWorld.instance.addObject(particleInstance, x, y);
+        particleInstance.setImage(image);
     }
 
     public Particle[] particles;

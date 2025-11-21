@@ -41,6 +41,7 @@ public class Item extends SharedResources
         setY(getY() + (int)yVelocity);
         
         if (getY() > 325){
+            ParticleManager.instance.createParticle(getImage(), getX(), getY(), random(-10, 10), -10, random(-15, 15), 30, true, 1);
             destroy();
         }
     }

@@ -8,12 +8,42 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Particle extends SharedResources
 {
-    /**
-     * Act - do whatever the Particle wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
+    public float xVelocity;
+    public float yVelocity;
+    public float degVelocity;
+
+    public int time;
+    public boolean fade;
+    public float gravity;
+
+    public Particle(float xVelocity, float yVelocity, float degVelocity, int time, boolean fade, float gravity){
+        this.xVelocity = xVelocity;
+        this.yVelocity = yVelocity;
+        this.degVelocity = degVelocity;
+
+        this.time = time;
+        this.fade = fade;
+        this.gravity = gravity;
+    }
+
+    private int frame;
+    public void act(){
+        frame++;
+
+        setRotation(getRotation() + (int)degVelocity);
+        setLocation(getX() + (int)xVelocity, getY() + (int)yVelocity);
+
+        yVelocity += gravity;
+
+        int transparency = (int)(((float)frame / (float)time) * 255);
+        if (transparency > 255)
+            transparency = 255;
+            
+        transparency = 255 - transparency;
+        
+        getImage().setTransparency(transparency);
+
+        if (frame > time)
+            destroy();
     }
 }
