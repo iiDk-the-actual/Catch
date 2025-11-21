@@ -25,10 +25,10 @@ public class Player extends SharedResources
     
     public void stepVelocity(){
         if (Greenfoot.isKeyDown("a"))
-            velocity += 0.5f;
+            velocity += 1f;
 
         if (Greenfoot.isKeyDown("d"))
-            velocity -= 0.5f;
+            velocity -= 1f;
 
         setX(getX() - (int)velocity);
 

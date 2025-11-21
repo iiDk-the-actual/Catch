@@ -28,10 +28,4 @@ public class ParticleManager extends SharedResources
         CatchWorld.instance.addObject(particleInstance, x, y);
         particleInstance.setImage(image);
     }
-
-    public Particle[] particles;
-    public void act()
-    {
-        
-    }
 }

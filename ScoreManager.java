@@ -15,17 +15,38 @@ public class ScoreManager extends SharedResources
     public static ScoreManager instance;
     public int score;
     
-    public void incrementScore(int incrementation)
-    {
-        score += incrementation;
-    }
-    
     public ScoreManager()
     {
         instance = this;
+        resetScore();
     }
 
     public static void initialize(){
         instance = new ScoreManager();
+        CatchWorld.instance.addObject(instance, CatchWorld.instance.getWidth() / 2, 30);
+    }
+
+    private GreenfootImage scoreImage = new GreenfootImage(68, 30);
+    public void resetScore()
+    {
+        score = 0;
+        incrementScore(0);
+    }
+
+    public void incrementScore(int score)
+    {
+        score += score;
+        
+        scoreImage.clear();
+        scoreImage.setColor(new greenfoot.Color(0, 0, 0, 0));
+        scoreImage.fill();
+        
+        Font impact = new Font("Impact", 32);
+        scoreImage.setFont(impact);
+        scoreImage.setColor(greenfoot.Color.BLACK);
+        scoreImage.drawString(""+score, 2, 30);
+        scoreImage.setColor(greenfoot.Color.WHITE);
+        scoreImage.drawString(""+score, 0, 30);
+        setImage(scoreImage);
     }
 }

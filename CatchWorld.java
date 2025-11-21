@@ -14,21 +14,39 @@ public class CatchWorld extends World
      * 
      */
     public static CatchWorld instance;
+    private int frame;
+
     public CatchWorld()
     {   
         super(600, 400, 1);
+        instance = this;
         
         ScoreManager.initialize();
         ParticleManager.initialize();
-
-        instance = this;
+        
         populate();
+    }
+
+    public void act(){
+        frame++;
+
+        if (frame > 60){
+            frame = 0;
+            spawnRandomItem();
+        }
     }
     
     public void populate()
     {
-        spawnItem(Item.ItemType.Apple, getWidth() / 2,  100);
         addObject(new Player(), getWidth() / 2, 300);
+    }
+
+    public void spawnRandomItem(){
+        spawnItem(Item.ItemType.Apple, random(0, getWidth()),  0);
+    }
+
+    public int random(int min, int max){// greenfoot's random method is terrible
+        return min + Greenfoot.getRandomNumber(max - min);
     }
     
     public void spawnItem(Item.ItemType type, int x, int y){
