@@ -18,6 +18,9 @@ public class CatchWorld extends World
     {   
         super(600, 400, 1);
         
+        ScoreManager.initialize();
+        ParticleManager.initialize();
+
         instance = this;
         populate();
     }

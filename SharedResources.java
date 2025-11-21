@@ -18,4 +18,8 @@ public class SharedResources extends Actor
     public int random(int min, int max){// greenfoot's random method is terrible
         return min + Greenfoot.getRandomNumber(max - min);
     }
+
+    public void destroy(){
+        getWorld().removeObject(this);
+    }
 }

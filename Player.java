@@ -19,13 +19,28 @@ public class Player extends SharedResources
     private float velocity;
     public void act()
     {
-        if (Greenfoot.isKeyDown("a"))
-        {
-            velocity -= 0.5;
-        }
+        stepVelocity();
+        stepCollection();
     }
     
     public void stepVelocity(){
-        
+        if (Greenfoot.isKeyDown("a"))
+            velocity += 0.5f;
+
+        if (Greenfoot.isKeyDown("d"))
+            velocity -= 0.5f;
+
+        setX(getX() - (int)velocity);
+
+        velocity *= 0.9;
+    }
+    
+    public void stepCollection(){
+        Item collectedItem = (Item)getOneIntersectingObject(Item.class);
+        if (collectedItem != null){
+            if (collectedItem.isCollectible()){
+                collectedItem.collectItem();
+            }
+        }
     }
 }

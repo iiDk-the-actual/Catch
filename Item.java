@@ -33,8 +33,34 @@ public class Item extends SharedResources
         }
     }
     
+    public float xVelocity;
+    public float yVelocity;
     public void act()
     {
-        // Add your action code here.
+        yVelocity += 0.25;
+        setY(getY() + (int)yVelocity);
+        
+        if (getY() > 325){
+            destroy();
+        }
+    }
+
+    public boolean isCollectible(){
+        switch (type){
+            case Apple:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public void collectItem(){
+        switch (type){
+            case Apple:
+                ScoreManager.instance.incrementScore(1);
+            default:
+        }
+
+        destroy();
     }
 }

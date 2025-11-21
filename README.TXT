@@ -1,12 +1,1 @@
-------------------------------------------------------------------------
-This is the project README file. Here, you should describe your project.
-Tell the reader (someone who does not know anything about this project)
-all they need to know. The comments should usually include at least:
-------------------------------------------------------------------------
-
-PROJECT TITLE:
-PURPOSE OF PROJECT:
-VERSION or DATE:
-HOW TO START THIS PROJECT:
-AUTHORS:
-USER INSTRUCTIONS:
+To anyone else stumbling upon this, I'm sorry. This was written in a niche "game engine?" called Greenfoot, for a very niche community of people hoping to learn something in a Computer Science class. I am one of those people. I feel like I'm not learning anything, and I'm okay with it.
