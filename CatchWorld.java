@@ -26,12 +26,18 @@ public class CatchWorld extends World
         HealthBar.initialize();
         
         populate();
+        setPaintOrder(FailScreen.class, Heart.class, ScoreManager.class, Item.class, Particle.class, Player.class);
     }
 
     public void act(){
         frame++;
+        if (failed)
+        {
+            Greenfoot.stop();
+            return;
+        }
 
-        if (frame > 60){
+        if (frame > (60 - (int)(ScoreManager.instance.score / 10))){
             frame = 0;
             spawnRandomItem();
         }
@@ -40,6 +46,15 @@ public class CatchWorld extends World
     public void populate()
     {
         addObject(new Player(), getWidth() / 2, 300);
+    }
+    
+    public boolean failed;
+    public void fail()
+    {
+        failed = true;
+        addObject(new FailScreen(), getWidth() / 2, getHeight() / 2); 
+        setBackground(new GreenfootImage("bg_fail.png"));
+        Greenfoot.stop();
     }
 
     public int countUntilNonApple = 10;
@@ -50,18 +65,20 @@ public class CatchWorld extends World
             countUntilNonApple = random(3, 10);
             itemType = Item.ItemType.Heart;
         }
-        spawnItem(itemType, random(0, getWidth()),  0);
+        spawnItem(itemType, random(0, getWidth()), 0, 0, 0);
     }
 
     public int random(int min, int max){// greenfoot's random method is terrible
         return min + Greenfoot.getRandomNumber(max - min);
     }
     
-    public void spawnItem(Item.ItemType type, int x, int y){
+    public void spawnItem(Item.ItemType type, int x, int y, int velocity, int transparency){
         Item itemInstance = new Item(type);
-        itemInstance.rotVelocity = random(5, 5);
+        itemInstance.rotVelocity = random(-5, 5);
+        itemInstance.yVelocity = velocity;
         
         addObject(itemInstance, x, y);
         itemInstance.setRotation(random(0, 360));
+        itemInstance.getImage().setTransparency(transparency);
     }
 }

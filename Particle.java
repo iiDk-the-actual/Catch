@@ -34,11 +34,13 @@ public class Particle extends SharedResources
         yVelocity += gravity;
 
         int transparency = (int)(((float)frame / (float)time) * 255);
-        if (transparency > 255)
-            transparency = 255;
-            
         transparency = 255 - transparency;
         
+        if (transparency > 255)
+            transparency = 255;
+        if (transparency < 0)
+            transparency = 0;
+
         getImage().setTransparency(transparency);
 
         if (frame > time)

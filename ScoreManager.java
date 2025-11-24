@@ -41,7 +41,7 @@ public class ScoreManager extends SharedResources
         scoreImage.setColor(new greenfoot.Color(0, 0, 0, 0));
         scoreImage.fill();
         
-        Font impact = new Font("Impact", 32);
+        Font impact = new Font("Arial", 32);
         scoreImage.setFont(impact);
         scoreImage.setColor(greenfoot.Color.BLACK);
         scoreImage.drawString(""+this.score, 2, 30);

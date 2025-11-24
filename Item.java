@@ -65,6 +65,8 @@ public class Item extends SharedResources
         switch (type){
             case Apple:
                 return true;
+            case Heart:
+                return true;
             default:
                 return false;
         }
@@ -81,7 +83,8 @@ public class Item extends SharedResources
             default:
                 break;
         }
-
+        
+        ParticleManager.instance.createParticle(getImage(), getX(), getY(), getRotation(), 0, yVelocity, rotVelocity, 6, true, 0);
         destroy();
     }
     

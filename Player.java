@@ -23,12 +23,22 @@ public class Player extends SharedResources
         stepCollection();
     }
     
+    public void stopped(){
+        destroy();
+    }
+    
+    public int shootTimer;
     public void stepVelocity(){
         if (Greenfoot.isKeyDown("a"))
             velocity += 1.5f;
 
         if (Greenfoot.isKeyDown("d"))
             velocity -= 1.5f;
+            
+        shootTimer--;
+        if (Greenfoot.isKeyDown("e") && shootTimer <= 0 && ScoreManager.instance.score > 0){
+            shootApple();
+        }
 
         setX(getX() - (int)velocity);
 
@@ -36,11 +46,20 @@ public class Player extends SharedResources
     }
     
     public void stepCollection(){
+        if (shootTimer > 0)
+            return;
+        
         Item collectedItem = (Item)getOneIntersectingObject(Item.class);
         if (collectedItem != null){
             if (collectedItem.isCollectible()){
                 collectedItem.collectItem();
             }
         }
+    }
+    
+    public void shootApple(){
+        shootTimer = 10;
+        ScoreManager.instance.incrementScore(-1);
+        CatchWorld.instance.spawnItem(Item.ItemType.Apple, getX(), getY(), -15, 255);
     }
 }

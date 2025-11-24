@@ -44,6 +44,9 @@ public class HealthBar extends SharedResources
                 heart.breakHeart();
             }
         }
+
+        if (health <= 0)
+            CatchWorld.instance.fail();
     }
     
     public static void initialize(){
