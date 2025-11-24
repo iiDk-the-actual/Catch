@@ -33,6 +33,8 @@ public class HealthBar extends SharedResources
         health += addition;
         if (health > 3)
             health = 3;
+        if (health < 0)
+            health = 0;
         
         for (int i=0; i<3; i++){
             Heart heart = hearts[i];

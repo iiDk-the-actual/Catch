@@ -58,6 +58,10 @@ public class CatchWorld extends World
     }
     
     public void spawnItem(Item.ItemType type, int x, int y){
-        addObject(new Item(type), x, y);
+        Item itemInstance = new Item(type);
+        itemInstance.rotVelocity = random(5, 5);
+        
+        addObject(itemInstance, x, y);
+        itemInstance.setRotation(random(0, 360));
     }
 }

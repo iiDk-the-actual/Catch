@@ -41,11 +41,13 @@ public class Item extends SharedResources
     
     public float xVelocity;
     public float yVelocity;
+    public int rotVelocity;
     
     public void act()
     {
         yVelocity += 0.25;
         setY(getY() + (int)yVelocity);
+        setRotation(getRotation() + rotVelocity);
         
         GreenfootImage image = getImage();
         
@@ -92,7 +94,7 @@ public class Item extends SharedResources
                 break;
         }
  
-        ParticleManager.instance.createParticle(getImage(), getX(), getY(), random(-5, 5), -5, random(-15, 15), 30, true, 0.25f);
+        ParticleManager.instance.createParticle(getImage(), getX(), getY(), getRotation(), random(-5, 5), -5, random(-15, 15), 30, true, 0.25f);
         destroy();
     }
 }
