@@ -15,7 +15,8 @@ public class Item extends SharedResources
     public enum ItemType
     {
         Apple,
-        Heart
+        Heart,
+        Bomb
     }
     
     public ItemType type;
@@ -34,6 +35,8 @@ public class Item extends SharedResources
             case ItemType.Heart:
                 setImage(new GreenfootImage("heart.png"));
                 break;
+            case ItemType.Bomb:
+                setImage(new GreenfootImage("bomb.png"));
         }
         
         getImage().setTransparency(0);
@@ -41,11 +44,12 @@ public class Item extends SharedResources
     
     public float xVelocity;
     public float yVelocity;
+    public float gravity = 0.25f;
     public int rotVelocity;
     
     public void act()
     {
-        yVelocity += 0.25;
+        yVelocity += gravity;
         setY(getY() + (int)yVelocity);
         setRotation(getRotation() + rotVelocity);
         
@@ -92,6 +96,9 @@ public class Item extends SharedResources
         switch (type){
             case Apple:
                 HealthBar.instance.incrementHealth(-1);
+                break;
+            case Bomb:
+                HealthBar.instance.incrementHealth(-3);
                 break;
             default:
                 break;

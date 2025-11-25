@@ -14,7 +14,6 @@ public class CatchWorld extends World
      * 
      */
     public static CatchWorld instance;
-    private int frame;
 
     public CatchWorld()
     {   
@@ -29,17 +28,27 @@ public class CatchWorld extends World
         setPaintOrder(FailScreen.class, Heart.class, ScoreManager.class, Item.class, Particle.class, Player.class);
     }
 
+    private int itemTimer;
+    private int bombTimer;
     public void act(){
-        frame++;
+        itemTimer++;
         if (failed)
         {
             Greenfoot.stop();
             return;
         }
 
-        if (frame > (60 - (int)(ScoreManager.instance.score / 10))){
-            frame = 0;
+        if (itemTimer > (60 - (int)(ScoreManager.instance.score / 10))){
+            itemTimer = 0;
             spawnRandomItem();
+        }
+        
+        if (ScoreManager.instance.score > 20){
+            bombTimer++;
+            if (bombTimer > 500){
+                bombTimer = 0;
+                spawnRandomBomb();
+            }
         }
     }
     
@@ -80,5 +89,19 @@ public class CatchWorld extends World
         addObject(itemInstance, x, y);
         itemInstance.setRotation(random(0, 360));
         itemInstance.getImage().setTransparency(transparency);
+    }
+    
+    public void spawnRandomBomb(){
+        spawnBomb(random(0, getWidth()), 0, 0, 0);
+    }
+    
+    public void spawnBomb(int x, int y, int velocity, int transparency){
+        Bomb bombInstance = new Bomb();
+        bombInstance.rotVelocity = random(-5, 5);
+        bombInstance.yVelocity = velocity;
+        
+        addObject(bombInstance, x, y);
+        bombInstance.setRotation(random(0, 360));
+        bombInstance.getImage().setTransparency(transparency);
     }
 }

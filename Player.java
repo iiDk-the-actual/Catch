@@ -29,10 +29,10 @@ public class Player extends SharedResources
     
     public int shootTimer;
     public void stepVelocity(){
-        if (Greenfoot.isKeyDown("a"))
+        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left"))
             velocity += 1.5f;
 
-        if (Greenfoot.isKeyDown("d"))
+        if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right"))
             velocity -= 1.5f;
             
         shootTimer--;
@@ -60,6 +60,6 @@ public class Player extends SharedResources
     public void shootApple(){
         shootTimer = 10;
         ScoreManager.instance.incrementScore(-1);
-        CatchWorld.instance.spawnItem(Item.ItemType.Apple, getX(), getY(), -15, 255);
+        CatchWorld.instance.spawnItem(Item.ItemType.Apple, getX(), getY(), -11, 255);
     }
 }
