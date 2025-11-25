@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * Main world for Catch game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Grayson G.
+ * @version 1.0.0
  */
 public class CatchWorld extends World
 {
@@ -20,14 +20,17 @@ public class CatchWorld extends World
         super(600, 400, 1);
         instance = this;
         
+        // initialize all manager and GUIs
         ScoreManager.initialize();
         ParticleManager.initialize();
         HealthBar.initialize();
         
+        // spawn all objects and set the layering
         populate();
         setPaintOrder(FailScreen.class, Heart.class, ScoreManager.class, Item.class, Particle.class, Player.class);
     }
 
+    // random spawning of items; hearts,apples,bombs
     private int itemTimer;
     private int bombTimer;
     public void act(){
@@ -43,6 +46,7 @@ public class CatchWorld extends World
             spawnRandomItem();
         }
         
+        // bombs are seperate  due to custom code
         if (ScoreManager.instance.score > 20){
             bombTimer++;
             if (bombTimer > 500){
@@ -52,11 +56,13 @@ public class CatchWorld extends World
         }
     }
     
+    // Just the player ..
     public void populate()
     {
         addObject(new Player(), getWidth() / 2, 300);
     }
     
+    // death screen
     public boolean failed;
     public void fail()
     {
@@ -66,6 +72,7 @@ public class CatchWorld extends World
         Greenfoot.stop();
     }
 
+    // spawns item at random position, heart if countUntilNonApple is less than zero otherwise apple
     public int countUntilNonApple = 10;
     public void spawnRandomItem(){
         Item.ItemType itemType = Item.ItemType.Apple;
@@ -81,6 +88,7 @@ public class CatchWorld extends World
         return min + Greenfoot.getRandomNumber(max - min);
     }
     
+    // spawns an item.. duh
     public void spawnItem(Item.ItemType type, int x, int y, int velocity, int transparency){
         Item itemInstance = new Item(type);
         itemInstance.rotVelocity = random(-5, 5);
@@ -90,11 +98,13 @@ public class CatchWorld extends World
         itemInstance.setRotation(random(0, 360));
         itemInstance.getImage().setTransparency(transparency);
     }
-    
+     
+    // spawns a bomb with random params
     public void spawnRandomBomb(){
         spawnBomb(random(0, getWidth()), 0, 0, 0);
     }
     
+    // spawns a bomb.. duh
     public void spawnBomb(int x, int y, int velocity, int transparency){
         Bomb bombInstance = new Bomb();
         bombInstance.rotVelocity = random(-5, 5);

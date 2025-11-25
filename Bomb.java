@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Bomb here.
+ * Subclass of Item- a bomb that you need to throw apples / collectible items at to defuse.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Grayson G.
+ * @version 1.0.0
  */
+
 public class Bomb extends Item
 {
-    public ItemType type;
-    public Bomb()
+    public Bomb() // Use parent
     {
         super(ItemType.Bomb);
         this.gravity = 0.025f;
@@ -17,11 +17,12 @@ public class Bomb extends Item
   
     public void act()
     {
-        super.act();
+        super.act(); // Gravity and such
         
-        if (getWorld() == null)
+        if (getWorld() == null) // see if in a world, why does this work?
             return;
         
+        // Check for other colliding items
         Item collectedItem = (Item)getOneIntersectingObject(Item.class);
         if (collectedItem != null){
             if (collectedItem.isCollectible()){
@@ -30,6 +31,7 @@ public class Bomb extends Item
         }
     }
     
+    // Particles like missItem
     public void stopBomb(){
         ParticleManager.instance.createParticle(getImage(), getX(), getY(), getRotation(), random(-5, 5), -5, random(-15, 15), 30, true, 0.25f);
         destroy();

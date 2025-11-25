@@ -1,11 +1,13 @@
 /**
-* Write a description of class Particle here.
+ * Simple particle, like item but boring
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Grayson G.
+ * @version 1.0.0
  */
+
 public class Particle extends SharedResources
 {
+    // velocity
     public float xVelocity;
     public float yVelocity;
     public float degVelocity;
@@ -14,6 +16,7 @@ public class Particle extends SharedResources
     public boolean fade;
     public float gravity;
 
+    // initializer to splatter all of those variables from up there
     public Particle(float xVelocity, float yVelocity, float degVelocity, int time, boolean fade, float gravity){
         this.xVelocity = xVelocity;
         this.yVelocity = yVelocity;
@@ -24,6 +27,7 @@ public class Particle extends SharedResources
         this.gravity = gravity;
     }
 
+    // more gravity, time based transparency and such
     private int frame;
     public void act(){
         frame++;
@@ -43,6 +47,7 @@ public class Particle extends SharedResources
 
         getImage().setTransparency(transparency);
 
+        // destroy
         if (frame > time)
             destroy();
     }

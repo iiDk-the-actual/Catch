@@ -1,17 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ScoreManager here.
+ * Score manager from FlyingBirdWorld
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Grayson G.
+ * @version 1.0.1
  */
 public class ScoreManager extends SharedResources
 {
-    /**
-     * Act - do whatever the ScoreManager wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    // initializer
     public static ScoreManager instance;
     public int score;
     
@@ -26,6 +23,7 @@ public class ScoreManager extends SharedResources
         CatchWorld.instance.addObject(instance, CatchWorld.instance.getWidth() / 2, 30);
     }
 
+    // image holding the score
     private GreenfootImage scoreImage = new GreenfootImage(68, 30);
     public void resetScore()
     {
@@ -33,6 +31,7 @@ public class ScoreManager extends SharedResources
         incrementScore(0);
     }
 
+    // score incrementer and string updater
     public void incrementScore(int score)
     {
         this.score += score;
@@ -44,7 +43,7 @@ public class ScoreManager extends SharedResources
         Font impact = new Font("Arial", 32);
         scoreImage.setFont(impact);
         scoreImage.setColor(greenfoot.Color.BLACK);
-        scoreImage.drawString(""+this.score, 2, 30);
+        scoreImage.drawString(""+this.score, 2, 30); // ew
         scoreImage.setColor(greenfoot.Color.WHITE);
         scoreImage.drawString(""+this.score, 0, 30);
         setImage(scoreImage);

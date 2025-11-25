@@ -1,13 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Player here.
+ * Player controller, the basket thing
+ * Controlled with AD/left right and E
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Grayson G.
+ * @version 1.0.0
  */
 public class Player extends SharedResources
 {
+    // initializer
     public static Player instance;
     
     public Player(){
@@ -16,6 +18,7 @@ public class Player extends SharedResources
         velocity = 0;
     }
     
+    // velocity and such
     private float velocity;
     public void act()
     {
@@ -23,10 +26,12 @@ public class Player extends SharedResources
         stepCollection();
     }
     
+    // destroy on stop
     public void stopped(){
         destroy();
     }
     
+    // shooting / AD movement
     public int shootTimer;
     public void stepVelocity(){
         if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left"))
@@ -40,11 +45,13 @@ public class Player extends SharedResources
             shootApple();
         }
 
+        // actually set the position
         setX(getX() - (int)velocity);
 
         velocity *= 0.9;
     }
     
+    // collecting of items that can be collected
     public void stepCollection(){
         if (shootTimer > 0)
             return;
@@ -57,6 +64,7 @@ public class Player extends SharedResources
         }
     }
     
+    // shoot code on E
     public void shootApple(){
         shootTimer = 10;
         ScoreManager.instance.incrementScore(-1);

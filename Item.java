@@ -1,17 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Item here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Item code, for bombs apples and hearts
+ * Do not confuse with heart
+ * @author Grayson G.
+ * @version 1.0.0
  */
 public class Item extends SharedResources
 {
-    /**
-     * Act - do whatever the Item wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    // all types of items
     public enum ItemType
     {
         Apple,
@@ -19,6 +16,7 @@ public class Item extends SharedResources
         Bomb
     }
     
+    // initializer code
     public ItemType type;
     public Item(ItemType itemType)
     {
@@ -26,6 +24,7 @@ public class Item extends SharedResources
         initializeTexture();
     }
     
+    // shows the photo.. ugly
     public void initializeTexture(){
         switch (type)
         {
@@ -42,6 +41,7 @@ public class Item extends SharedResources
         getImage().setTransparency(0);
     }
     
+    // vel and gravity
     public float xVelocity;
     public float yVelocity;
     public float gravity = 0.25f;
@@ -55,16 +55,19 @@ public class Item extends SharedResources
         
         GreenfootImage image = getImage();
         
+        // fade in on spawn
         int transparency = image.getTransparency();
         transparency = transparency + (int)((255 - transparency) * 0.1f);
         
         image.setTransparency(transparency);
         
         if (getY() > 325){
+            // failure when drop on ground
             missItem();
         }
     }
 
+    // determined for player.. ugly
     public boolean isCollectible(){
         switch (type){
             case Apple:
@@ -76,11 +79,12 @@ public class Item extends SharedResources
         }
     }
 
+    // collection for scorer and heart
     public void collectItem(){
         switch (type){
             case Apple:
                 ScoreManager.instance.incrementScore(1);
-                break;
+                break; 
             case Heart:
                 HealthBar.instance.incrementHealth(1);
                 break;
@@ -92,6 +96,7 @@ public class Item extends SharedResources
         destroy();
     }
     
+    // missing to determine what to do
     public void missItem(){
         switch (type){
             case Apple:

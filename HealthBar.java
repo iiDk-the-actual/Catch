@@ -1,33 +1,37 @@
 /**
- * Write a description of class HealthBar here.
+ * Shows health bar with health and hearts
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Grayson G.
+ * @version 1.0.0
  */
 public class HealthBar extends SharedResources
 {
-    /**
-     * Act - do whatever the HealthBar wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public static HealthBar instance;
     public Heart[] hearts;
     
+    // initializer
     public HealthBar(){
         instance = this;
         
+        // create hearts, ugly code
         hearts = new Heart[]{
           new Heart(),
           new Heart(),
           new Heart()
         };
         
+        // hardcoded count, also ugly
         for (int i=0; i<3; i++){
             Heart heart = hearts[i];
             CatchWorld.instance.addObject(heart, 25 + (i * 50), 25);
         }
     }
+
+    public static void initialize(){
+        instance = new HealthBar();
+    }
     
+    // code to increment health and show it
     public int health = 3;
     public void incrementHealth(int addition){
         health += addition;
@@ -47,9 +51,5 @@ public class HealthBar extends SharedResources
 
         if (health <= 0)
             CatchWorld.instance.fail();
-    }
-    
-    public static void initialize(){
-        instance = new HealthBar();
     }
 }

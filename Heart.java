@@ -1,17 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Heart here.
+ * Heart photo for health bar
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Grayson G.
+ * @version 1.0.0
  */
 public class Heart extends SharedResources
 {
-    /**
-     * Act - do whatever the Heart wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    // basic photo stuff
     public boolean broken;
     public void breakHeart(){
         setImage(new GreenfootImage("dmg_heart.png"));

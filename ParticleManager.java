@@ -1,17 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ParticleManager here.
+ * Exists just to make particles
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Grayson G.
+ * @version 1.0.0
  */
 public class ParticleManager extends SharedResources
 {
-    /**
-     * Act - do whatever the ParticleManager wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    // initializer
     public static ParticleManager instance;
     public ParticleManager(){
         instance = this;
@@ -21,6 +18,7 @@ public class ParticleManager extends SharedResources
         instance = new ParticleManager();
     }
 
+    // solely exists just to make particles
     public void createParticle(GreenfootImage image, int x, int y, int deg, float xVelocity, float yVelocity, float degVelocity,
                                int time, boolean fade, float gravity
     ){

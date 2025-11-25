@@ -1,8 +1,8 @@
 /**
- * Write a description of class FailScreen here.
+ * Legit just a photo
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Grayson G.
+ * @version 1.0.0
  */
 public class FailScreen extends SharedResources
 {
