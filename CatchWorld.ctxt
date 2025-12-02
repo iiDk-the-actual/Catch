@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=CatchWorld
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ MyWorld\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Main\ world\ for\ Catch\ game\r\n\ \r\n\ @author\ Grayson\ G.\r\n\ @version\ 1.0.0\r\n
 comment1.params=
 comment1.target=CatchWorld()
 comment2.params=

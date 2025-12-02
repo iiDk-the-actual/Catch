@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Particle
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Particle\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Simple\ particle,\ like\ item\ but\ boring\r\n\ \r\n\ @author\ Grayson\ G.\r\n\ @version\ 1.0.0\r\n
 comment1.params=xVelocity\ yVelocity\ degVelocity\ time\ fade\ gravity
 comment1.target=Particle(float,\ float,\ float,\ int,\ boolean,\ float)
 comment2.params=
